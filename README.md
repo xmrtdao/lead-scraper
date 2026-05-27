@@ -415,3 +415,61 @@ This scraper feeds leads into:
 
 **Maintained by:** Hermes (XMRT DAO)  
 **GitHub:** https://github.com/xmrtdao/lead-scraper
+
+---
+
+## 📸 Party Favor Photo Integration
+
+### Target Markets
+
+**Priority 1: Northern Virginia**
+- Arlington, Alexandria, Fairfax
+- Reston, Ashburn, Leesburg
+- Manassas, Woodbridge
+- **Goal:** 100 wedding planners/venues
+
+**Priority 2: Dallas, TX**
+- Dallas, Fort Worth, Plano
+- Irving, Frisco, McKinney
+- Allen, Richardson
+- **Goal:** 100 wedding planners/venues
+
+### Partnership Offer
+
+- **15% commission** on all referrals
+- Average: $100-150 per booking
+- Potential: $1,000-1,500/planner/year passive income
+
+### Outreach Campaign
+
+See: `PFP_PARTNERSHIP_OUTREACH.md` for:
+- Email templates
+- Follow-up sequence
+- Tracking spreadsheet
+- Success metrics
+
+### Running the Scraper
+
+```bash
+cd /data/data/com.termux/files/home/lead-scraper
+
+# Install dependencies
+pip install playwright beautifulsoup4 supabase
+playwright install
+
+# Run scraper (targets NoVA + Dallas)
+python scraper_wedding.py
+
+# Output: wedding_planners_YYYYMMDD_HHMMSS.json
+# Upload to Supabase leads table
+```
+
+### Expected Results
+
+| Market | Planners | Email Rate | Partnerships | Revenue |
+|--------|----------|------------|--------------|---------|
+| NoVA | 100 | 40% | 5 | $7,500/yr |
+| Dallas | 100 | 40% | 5 | $7,500/yr |
+| **Total** | **200** | **40%** | **10** | **$15,000/yr** |
+
+---
