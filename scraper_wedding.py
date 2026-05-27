@@ -18,6 +18,14 @@ class WeddingPlannerScraper:
     def __init__(self):
         self.email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
         self.leads = []
+        self.partnership_offer = """
+Party Favor Photo Partnership Offer:
+- 15% commission on all referrals
+- Professional photography for your clients
+- StudioStation on-site experience
+- No cost to you - we handle everything
+- Commission paid within 7 days of booking
+"""
     
     async def scrape_theknot(self, location="washington-dc"):
         """Scrape TheKnot.com for wedding planners"""
@@ -136,20 +144,70 @@ class WeddingPlannerScraper:
 
 async def main():
     print("╔══════════════════════════════════════════════════════════════╗")
-    print("║     Wedding Planner Lead Scraper                             ║")
+    print("║     Party Favor Photo - Lead Scraper                         ║")
+    print("║     Target: Northern Virginia + Dallas, TX                   ║")
     print("╚══════════════════════════════════════════════════════════════╝")
     print()
     
     scraper = WeddingPlannerScraper()
     
-    # Scrape sources
-    await scraper.scrape_theknot("washington-dc")
-    print()
-    await scraper.scrape_weddingwire("washington-dc")
+    # Target markets for Party Favor Photo
+    locations_nova = [
+        "arlington-va",
+        "alexandria-va",
+        "fairfax-va",
+        "reston-va",
+        "ashburn-va",
+        "leesburg-va",
+        "manassas-va",
+        "woodbridge-va",
+    ]
+    
+    locations_dallas = [
+        "dallas-tx",
+        "fort-worth-tx",
+        "plano-tx",
+        "irving-tx",
+        "frisco-tx",
+        "mckinney-tx",
+        "allen-tx",
+        "richardson-tx",
+    ]
+    
+    print("📍 Target Markets:")
+    print(f"   Northern Virginia: {len(locations_nova)} locations")
+    print(f"   Dallas, TX: {len(locations_dallas)} locations")
     print()
     
+    # Scrape Northern Virginia
+    print("═══════════════════════════════════════════════════════════")
+    print("  NORTHERN VIRGINIA")
+    print("═══════════════════════════════════════════════════════════")
+    for location in locations_nova:
+        await scraper.scrape_theknot(location)
+        print()
+    
+    # Scrape Dallas
+    print("═══════════════════════════════════════════════════════════")
+    print("  DALLAS, TX")
+    print("═══════════════════════════════════════════════════════════")
+    for location in locations_dallas:
+        await scraper.scrape_theknot(location)
+        print()
+    
     # Save results
-    scraper.save_leads()
+    filename = scraper.save_leads()
+    
+    print()
+    print("═══════════════════════════════════════════════════════════")
+    print("  NEXT STEPS FOR PARTY FAVOR PHOTO")
+    print("═══════════════════════════════════════════════════════════")
+    print("   1. Review leads in JSON file")
+    print("   2. Upload to Supabase leads table")
+    print("   3. Create partnership outreach campaign")
+    print("   4. Send 15% commission offer emails")
+    print()
+    print(f"  💰 Potential: {len(scraper.leads)} planners × 10 bookings/yr × $500 = ${len(scraper.leads) * 5000}/yr")
     
     print()
     print("🦑 Next steps:")
