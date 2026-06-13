@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """
 Lead Scraper - Wedding Planners (DC Area)
@@ -11,8 +12,8 @@ from datetime import datetime
 from playwright.async_api import async_playwright
 
 # Supabase config
-SUPABASE_URL = "https://vawouugtzwmejxqkeqqj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhd291dWd0endtZWp4cWtlcXFqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1Mjc2OTcxMiwiZXhwIjoyMDY4MzQ1NzEyfQ.QH0k26R2xbf4U5z6BmdYG1h_lkeNQ41zDjqL2zWxzxU"
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")  # Set via environment variable
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")  # Set via environment variable - project offline
 
 class WeddingPlannerScraper:
     def __init__(self):
