@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """
 Party Favor Photo - Lead Generator using Exa AI Search
@@ -13,8 +14,8 @@ from datetime import datetime
 EXA_API_KEY = "YOUR_EXA_API_KEY"  # Get free key at https://exa.ai/
 
 # Supabase config
-SUPABASE_URL = "https://vawouugtzwmejxqkeqqj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")  # Set via environment variable
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")  # Set via environment variable - project offline
 
 class ExaLeadGenerator:
     def __init__(self):
